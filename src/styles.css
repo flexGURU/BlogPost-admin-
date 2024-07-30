@@ -1,0 +1,67 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+:root {
+    --primary-color: #5f9ea0;
+    --secondary-color: #c9e7c9;
+    --body-text-color: #000000;
+    --navbar-footer-color: #dae8e8;
+    --headings: #008b8b;
+    --white:  #ffffff;;
+
+}
+
+
+body {
+    font-family: "Bellota Text", serif;
+    font-size: 14px;
+    color: var(--body-text-color);
+    display: contents;
+    font-weight: 400;
+}
+
+.site-logo {
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    color: var(--headings);
+    font-weight: bold;
+}
+
+
+.nav_link {
+    color: var(--primary-color);
+}
+
+.shadow-effect {
+    border: none;
+    box-shadow: 0px 0px 27px -10px #302027;
+    
+}
+
+.bg-theme {
+    background-color: var(--primary-color);
+}
+.bg-secondary-theme {
+    background-color: var(--secondary-color);
+}
+
+.text-theme-primary {
+    color: var(--headings);
+    font-weight: 400;
+}
+
+input[type = text], input[type = email] {
+    height: 60px;
+    padding-left: 20px;
+    font-size: 13px;
+    
+}
+
+.btn-theme {
+    height: 58px;
+    border: none;
+    font-size: 13px;
+    background-color: var(--headings);
+    color: var(--white);
+}
