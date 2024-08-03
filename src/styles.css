@@ -65,3 +65,7 @@ input[type = text], input[type = email] {
     background-color: var(--headings);
     color: var(--white);
 }
+
+.btn-margin {
+    margin-right: 2;
+}
