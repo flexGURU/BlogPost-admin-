@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { Post } from '../../models/post';
 
 
 
@@ -67,6 +68,28 @@ export class NewPostsComponent implements OnInit {
     reader.readAsDataURL($event.target.files[0]);
     this.selectedImg = $event.target.files[0];
 
+  }
+
+  onSubmit() {
+    console.log(this.postForm.value);
+
+    let splitted = this.postForm.value.category.split('-');
+
+    const postData: Post = {
+      title: this.postForm.value.title,
+      permalink: this.postForm.value.permalink,
+      category: {
+        categoryid: splitted[0],
+        category: splitted[1],
+      },
+      postImgPath: '',
+      excerpt: this.postForm.value.excerpt,
+      content: this.postForm.value.content,
+      isFeatured: false,
+      views: 0,
+      status: 'new',
+      createdAt: new Date()
+    }
   }
 
 }
