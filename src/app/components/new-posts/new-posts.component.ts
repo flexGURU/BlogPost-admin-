@@ -6,6 +6,7 @@ import { CategoriesService } from '../../services/categories.service';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { Post } from '../../models/post';
+import { PostImageService } from '../../services/post-image.service';
 
 
 
@@ -27,7 +28,9 @@ export class NewPostsComponent implements OnInit {
   categories: any;
   postForm: FormGroup;
 
-  constructor(private catService: CategoriesService, private fb: FormBuilder) {
+  constructor(private catService: CategoriesService, private fb: FormBuilder,
+    private uploadImg: PostImageService
+  ) {
 
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(10)]],
@@ -90,6 +93,13 @@ export class NewPostsComponent implements OnInit {
       status: 'new',
       createdAt: new Date()
     }
+
+    this.uploadImg.uploadImg(this.selectedImg, postData);
+    this.postForm.reset();
+    this.imgSrc = './assets/image.jpg'
   }
+
+ 
+
 
 }
