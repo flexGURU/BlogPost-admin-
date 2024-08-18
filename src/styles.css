@@ -1,6 +1,10 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bellefair&family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+
+
+
 :root {
     --primary-color: #5f9ea0;
     --secondary-color: #c9e7c9;
@@ -69,3 +73,5 @@ input[type = text], input[type = email] {
 .btn-margin {
     margin-right: 2;
 }
+
+

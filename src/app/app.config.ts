@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environmnets.prod';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
       ToastrModule.forRoot(),
       BrowserAnimationsModule
 
-    )
+    ), provideAnimationsAsync(), provideAnimationsAsync()
 
   ]
 };

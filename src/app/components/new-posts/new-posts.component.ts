@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -27,10 +27,23 @@ export class NewPostsComponent implements OnInit {
   selectedImg: any;
   categories: any;
   postForm: FormGroup;
+  queryParam: any;
 
-  constructor(private catService: CategoriesService, private fb: FormBuilder,
-    private uploadImg: PostImageService
+  constructor(
+    private catService: CategoriesService, 
+    private fb: FormBuilder,
+    private uploadImg: PostImageService, 
+    private route: ActivatedRoute
   ) {
+
+    this.route.queryParams.subscribe(val => {
+      this.uploadImg.fetchItemDetails(val['id']).subscribe(post => {
+        console.log(post)
+      })
+      
+    });
+
+   
 
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(10)]],
@@ -39,7 +52,7 @@ export class NewPostsComponent implements OnInit {
       category: ['', Validators.required],
       postImg: ['', Validators.required],
       content: ['', Validators.required],
-    })
+    });
 
   }
 
@@ -74,7 +87,6 @@ export class NewPostsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.postForm.value);
 
     let splitted = this.postForm.value.category.split('-');
 

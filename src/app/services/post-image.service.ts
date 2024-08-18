@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
+import { map,  switchMap, Subject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostImageService {
 
-  constructor( private storage: AngularFireStorage, private afs: AngularFirestore, private toastr: ToastrService) { }
+  constructor( private storage: AngularFireStorage, private afs: AngularFirestore, 
+    private toastr: ToastrService, private router: Router) { }
 
   uploadImg(selectedImg, postData) {
     const filePath = `postImg/${Date.now()}`;
@@ -28,7 +30,8 @@ export class PostImageService {
 
   saveData(postData) {
     this.afs.collection('posts').add(postData).then(docRef => {
-      this.toastr.success("Data has been added sucessfully")
+      this.toastr.success("Data has been added sucessfully");
+      this.router.navigate(['/posts']);
 
     })
   }
@@ -48,4 +51,11 @@ export class PostImageService {
     )
   }
 
+  fetchItemDetails(id){
+     return this.afs.collection('posts').doc(id).valueChanges();
+
+  }
+
+
+  
 }

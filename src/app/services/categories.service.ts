@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+
 
 
 @Injectable({
@@ -10,7 +12,9 @@ import { Observable } from 'rxjs';
 })
 export class CategoriesService {
 
-  constructor(private afs: AngularFirestore, private toastrService: ToastrService) { }
+  constructor(private afs: AngularFirestore, private toastrService: ToastrService,
+    private db: AngularFireDatabase
+  ) { }
 
   saveData(data) {
     this.afs.collection('categories').add(data).then(docRef => {
@@ -49,4 +53,9 @@ export class CategoriesService {
 
     })
    }
+   
+
+   
+
+
   }
