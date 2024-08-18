@@ -75,3 +75,8 @@ input[type = text], input[type = email] {
 }
 
 
+.form-floating + label {
+    /* styles for the label immediately following .form-floating */
+    font-size: 2;
+  }
+  
