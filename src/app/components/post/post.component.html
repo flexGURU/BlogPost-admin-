@@ -15,47 +15,6 @@
     </div>
     
 
-
-<div class="container col-md-12 mt-5">
-
-    <h2>Search Categories </h2>
-    
-
-    <!-- <div *ngFor="let cat of categories" >
-        <h4>
-            {{ cat.data.category.category }}
-        </h4>
-    </div> -->
-
-
-    <form action="">
-    <mat-form-field  > <i class="fa-solid fa-magnifying-glass"></i>
-        <input 
-        type="text" 
-        matInput 
-        [matAutocomplete]= "auto" 
-        [formControl]="myControl"
-        placeholder="Enter to Search"
-        
-        >
-        <mat-autocomplete #auto="matAutocomplete" >
-            <mat-option *ngFor= "let cat of filteredOptions | async" [value]= "cat.data.category.category">
-
-              <h3>  {{ cat.data.category.category }} </h3>
-              
-              <p>  {{ cat.data.excerpt }} </p>
-              <hr>
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    </form>
-
-    
-
-
-
-</div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="card mt-4 shadow-effect">
@@ -85,7 +44,10 @@
                                 <td> {{ post.data.createdAt.toMillis() | date}} </td>
                                 <td>
                                     <button class="btn btn-sm btn-warning" routerLink="/posts/new" [queryParams]= "{id: post.id}">  Edit </button>
+                                    <button class="delete btn btn-sm btn-danger"(click)= "onDelete(post.data.postImgPath, post.id)">  Delete </button>
+
                                 </td>
+
                                 <td>  </td>
 
                             </tr>

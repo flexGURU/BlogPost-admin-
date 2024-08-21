@@ -10,7 +10,6 @@ import { PostImageService } from '../../services/post-image.service';
 
 
 
-
 @Component({
   selector: 'app-new-posts',
   standalone: true,
@@ -28,6 +27,9 @@ export class NewPostsComponent implements OnInit {
   categories: any;
   postForm: FormGroup;
   queryParam: any;
+  postEdit: any;
+  formStatus: string = 'Add';
+  queryParamId: string;
 
   constructor(
     private catService: CategoriesService, 
@@ -37,30 +39,44 @@ export class NewPostsComponent implements OnInit {
   ) {
 
     this.route.queryParams.subscribe(val => {
-      this.uploadImg.fetchItemDetails(val['id']).subscribe(post => {
-        console.log(post)
-      })
-      
-    });
+      this.queryParamId = val['id'];
 
-   
-
-    this.postForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(10)]],
-      permalink: ['', Validators.required],
-      excerpt: ['', [Validators.required, Validators.minLength(50)]],
-      category: ['', Validators.required],
-      postImg: ['', Validators.required],
-      content: ['', Validators.required],
-    });
-
+      if( this.queryParamId ) {
+        this.uploadImg.fetchItemDetails(val['id']).subscribe(post => {
+        
+          this.postEdit = post;
+          
+          this.postForm = this.fb.group({
+            title: [this.postEdit.title , [Validators.required, Validators.minLength(10)]],
+            permalink: [this.postEdit.permalink, Validators.required],
+            excerpt: [this.postEdit.excerpt, [Validators.required, Validators.minLength(50)]],
+            category: [`${this.postEdit.category.categoryid}-${this.postEdit.category.category}`, Validators.required],
+            postImg: ['', Validators.required],
+            content: [this.postEdit.content, Validators.required],
+          });
+          this.imgSrc =  this.postEdit.postImgPath;
+          this.formStatus = 'Edit';
+  
+        
+          
+        })
+      }else {
+        this.postForm = this.fb.group({
+          title: ['' , [Validators.required, Validators.minLength(10)]],
+          permalink: ['', Validators.required],
+          excerpt: ['', [Validators.required, Validators.minLength(50)]],
+          category: ['', Validators.required],
+          postImg: ['', Validators.required],
+      });
+    }
+  });
   }
+
 
   get fc() {
     return this.postForm.controls;
   }
 
-  
 
   ngOnInit(): void {
     this.catService.loadData().subscribe(val => {
@@ -106,7 +122,7 @@ export class NewPostsComponent implements OnInit {
       createdAt: new Date()
     }
 
-    this.uploadImg.uploadImg(this.selectedImg, postData);
+    this.uploadImg.uploadImg(this.selectedImg, postData, this.formStatus, this.queryParamId );
     this.postForm.reset();
     this.imgSrc = './assets/image.jpg'
   }

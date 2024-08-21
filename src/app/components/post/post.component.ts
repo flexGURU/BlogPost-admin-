@@ -21,27 +21,24 @@ import { map, startWith } from 'rxjs/operators';
 export class PostComponent implements OnInit {
 
   postArray: Array<any> = [];
-  categories: Array<any> = [];
-  options: Array<string> = ['Vue', 'Python', 'Node'];
-  myControl = new FormControl();
-  filteredOptions: Observable<Array<any>>;
+
 
   constructor(private postService: PostImageService) {}
 
-  private _filter(value: string): Array<any> {
-    const filterValue = value.toLowerCase();
-    return this.categories.filter(cat => 
-      cat.data.category.category.toLowerCase().includes(filterValue));
-  }
+
 
   ngOnInit(): void {
     this.postService.loadData().subscribe(val => {
       this.postArray = val;
-      this.categories = val;
-      this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value || ''))
-      );
-    });
+      
+  });
+    };
+
+    onDelete(postImgPath, id){
+      this.postService.deleteItem(postImgPath, id)
+      
+    }
   }
-}
+
+
+
