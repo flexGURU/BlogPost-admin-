@@ -55,12 +55,17 @@ body {
     font-weight: 400;
 }
 
-input[type = text], input[type = email] {
+input[type = text]{
     height: 40px;
     padding-left: 20px;
     font-size: 13px;
     
 }
+
+input[type = email], input[type = password] {
+    height: 40px;
+    font-size: 13px;
+} 
 
 .btn-theme {
     height: 50px;
@@ -68,6 +73,7 @@ input[type = text], input[type = email] {
     font-size: 13px;
     background-color: var(--headings);
     color: var(--white);
+    
 }
 
 .btn-margin {

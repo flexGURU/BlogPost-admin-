@@ -67,6 +67,8 @@ export class NewPostsComponent implements OnInit {
           excerpt: ['', [Validators.required, Validators.minLength(50)]],
           category: ['', Validators.required],
           postImg: ['', Validators.required],
+          content: ['',Validators.required]
+          
       });
     }
   });
