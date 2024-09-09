@@ -73,8 +73,15 @@ input[type = email], input[type = password] {
     font-size: 13px;
     background-color: var(--headings);
     color: var(--white);
-    
 }
+
+.btn-theme:hover {
+    background-color: var(--headings);
+    color: var(--white);
+    
+
+}
+
 
 .btn-margin {
     margin-right: 2;
@@ -85,4 +92,4 @@ input[type = email], input[type = password] {
     /* styles for the label immediately following .form-floating */
     font-size: 2;
   }
-  
+

@@ -49,7 +49,7 @@
                     <tbody>
                         <tr *ngFor = "let category of categoryArray; let i = index ">
 
-                            <td> {{i}} </td>
+                            <td> {{i + 1}} </td>
                             <td> {{ category.data.category }} </td>
                             <td>
                                 <button class="btn btn-sm btn-warning" (click)= "onEdit(category.data.category, category.id)"> Edit </button>

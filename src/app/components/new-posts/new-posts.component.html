@@ -76,16 +76,19 @@
                         <div class="card-body">
     
                             <div class="form-group">
-                                <label for=""> Please select a post category </label>
+                                
+                                  
+                                <label for=""> Please select a post category</label>
                                 <select 
                                 name="" id="" 
                                 class="form-control" 
                                 formControlName="category"
                                 [ngClass]= "{'is-invalid': fc['category'].touched && fc['category'].invalid }"
-                                
-                                
+                               
                                 >
-                                    <option value="" > Please select a Category</option>
+                                    <!-- <option value="" > Please select a Category</option> -->
+                                    
+                                      
                                     <option 
                                     *ngFor = "let category of categories"  value= "{{category.id}}-{{category.data.category}}"> {{ category.data.category }} 
                                     

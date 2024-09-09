@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthServiceService } from './auth-service.service';
+import { Router } from '@angular/router';
 
 
 
@@ -12,5 +14,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
+
+  constructor ( private auth: AuthServiceService){}
+
+  onSubmit(loginForm) {
+    this.auth.login(loginForm.email, loginForm.password);
+
+
+  }
 
 }

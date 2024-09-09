@@ -18,7 +18,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom( 
       AngularFireModule.initializeApp(environment.firebaseConfig),
       AngularFirestoreModule,
-      ToastrModule.forRoot(),
+      ToastrModule.forRoot({timeOut:3000
+      }),
       BrowserAnimationsModule
 
     ), provideAnimationsAsync(), provideAnimationsAsync()
